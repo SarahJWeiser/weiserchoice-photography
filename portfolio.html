@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio | Weiser Choice Photography</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f4ed;
+            color: #252525;
+        }
+
+        header {
+            background-color: #171717;
+            color: #d4b978;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        nav {
+            background-color: #252525;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: #f7f4ed;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #d4b978;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 45px 20px 20px;
+        }
+
+        .intro h2 {
+            color: #a88946;
+            font-size: 32px;
+        }
+
+        .intro p {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .filters {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .filters button {
+            background-color: #252525;
+            color: #f7f4ed;
+            border: 1px solid #d4b978;
+            padding: 12px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background-color: #d4b978;
+            color: #171717;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #d4b978;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .gallery-item h3 {
+            text-align: center;
+            color: #a88946;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        footer {
+            background-color: #171717;
+            color: #d4b978;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Weiser Choice Photography</h1>
+    <p>CAPTURING MOMENTS. CREATING MEMORIES.</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#photography">Photography</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#contact">Contact</a>
+</nav>
+
+<section class="intro">
+    <h2>Our Portfolio</h2>
+
+    <p>
+        Every photograph tells a story.
+        Explore our collection of special moments,
+        beautiful memories, and life's celebrations.
+    </p>
+</section>
+
+<section class="filters">
+
+    <button class="active" onclick="filterGallery('all', this)">
+        All Photos
+    </button>                   
+
+</section>
+
+<section class="gallery" id="gallery">
+
+
+
+</section>
+
+<footer>
+    <p>Weiser Choice Photography</p>
+    <p>Capturing Moments. Creating Memories.</p>
+</footer>
+
+<script>
+
+    function filterGallery(category, button) {
+
+        const photos = document.querySelectorAll(".gallery-item");
+        const buttons = document.querySelectorAll(".filters button");
+
+        buttons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        photos.forEach(function(photo) {
+
+            if (category === "all" ||
+                photo.dataset.category === category) {
+
+                photo.classList.remove("hidden");
+
+            } else {
+
+                photo.classList.add("hidden");
+
+            }
+
+        });
+
+    }
+
+</script>
+<script src="gallery-data.js"></script>
+
+<script>
+    const gallery = document.getElementById("gallery");
+
+    galleryPhotos.forEach(function(photo) {
+
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+
+        const img = document.createElement("img");
+        img.src = photo;
+        img.alt = "Weiser Choice Photography";
+        img.loading = "lazy";
+
+        item.appendChild(img);
+        gallery.appendChild(item);
+
+    });
+</script>
+</body>
+</html>
+
